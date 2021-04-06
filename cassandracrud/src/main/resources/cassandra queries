@@ -1,0 +1,4 @@
+CREATE KEYSPACE cassandrademo WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+USE cassandrademo;
+CREATE TABLE person ( id TEXT PRIMARY KEY, fullname TEXT, age INT );
+DROP KEYSPACE cassandrademo;
