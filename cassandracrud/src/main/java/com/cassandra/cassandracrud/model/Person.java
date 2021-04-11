@@ -21,8 +21,8 @@ public class Person {
     @Column(value = "id")
     Long id;
 
-    @Column(value = "name")
-    String name;
+    @Column(value = "full_name")
+    String fullName;
 
     @Column(value = "age")
     Integer age;
@@ -31,7 +31,7 @@ public class Person {
     public String toString() {
         return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
                 .add("id='" + id + "'")
-                .add("name='" + name + "'")
+                .add("fullName='" + fullName + "'")
                 .add("age=" + age)
                 .toString();
     }
