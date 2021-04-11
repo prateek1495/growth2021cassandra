@@ -2,10 +2,13 @@ package com.cassandra.cassandracrud.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table
+import java.util.StringJoiner;
+
+@Table("person")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,18 +18,21 @@ import org.springframework.data.cassandra.core.mapping.Table;
 public class Person {
 
     @PrimaryKey
-    String id;
+    @Column(value = "id")
+    Long id;
 
+    @Column(value = "name")
     String name;
 
+    @Column(value = "age")
     Integer age;
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("name='" + name + "'")
+                .add("age=" + age)
+                .toString();
     }
 }

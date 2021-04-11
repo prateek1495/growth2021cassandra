@@ -1,7 +1,7 @@
 package com.cassandra.cassandracrud.controller;
 
 import com.cassandra.cassandracrud.model.Person;
-import com.cassandra.cassandracrud.service.PersonService;
+import com.cassandra.cassandracrud.service.impl.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,30 +12,30 @@ import java.util.List;
 public class PersonController {
 
     @Autowired
-    private PersonService personService;
+    private PersonServiceImpl personServiceImpl;
 
     @GetMapping("/")
     public List<Person> getPersons() {
-        return personService.getAllPersons();
+        return personServiceImpl.getAllPersons();
     }
 
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable String id) {
-        return personService.findById(id);
+        return personServiceImpl.findById(id);
     }
 
     @PutMapping("/update")
     public Person updatePerson(@RequestBody Person newPerson) {
-        return personService.updatePerson(newPerson);
+        return personServiceImpl.updatePerson(newPerson);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public String deletePerson(@PathVariable String id) {
-        return personService.deletePerson(id);
+        return personServiceImpl.deletePerson(id);
     }
 
     @PostMapping("/create")
     public Person addPerson(@RequestBody Person newPerson) {
-        return personService.createPerson(newPerson);
+        return personServiceImpl.createPerson(newPerson);
     }
 }
